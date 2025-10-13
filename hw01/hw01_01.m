@@ -1,0 +1,1 @@
+SumFactorial(20)
