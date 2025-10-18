@@ -1,38 +1,27 @@
 clf
 
-[x,y] = meshgrid(-3:3);
-z = x.^2./16 - y.^2./9;
+x = [.10 .30 .40 .55 .70 .80 .95];
+y = [ 15 18 19 21 22.6 23.8 26];
 
-[x1,y1] = meshgrid(-3:.1:3);
-z1 = x1.^2./16 - y1.^2./9;
+p1 = polyfit(x,y,1);
+p3 = polyfit(x,y,2);
+p5 = polyfit(x,y,5);
 
-[xi,yi] = meshgrid(-3:.1:3);
-zi1 = interp2(x,y,z,xi,yi,"nearest");
-zi2 = interp2(x,y,z,xi,yi,"linear");
-zi3 = interp2(x,y,z,xi,yi,"spline");
-zi4 = interp2(x,y,z,xi,yi,"cubic");
+x1 = 0:0.01:1;
+y1 = polyval(p1,x1);
+y3 = polyval(p3,x1);
+y5 = polyval(p5,x1);
 
-figure(1)
-subplot(1,2,1)
-mesh(x,y,z)
-title('数据点')
-subplot(1,2,2)
-mesh(x1,y1,z1)
-title('函数图像')
+disp('一次拟合函数')
+f1 = poly2str(p1,'x')
+disp('三次拟合函数')
+f3 = poly2str(p3,'x')
+disp('五次拟合函数')
+f5 = poly2str(p5,'x')
 
-figure(2)
-subplot(2,2,1);
-mesh(xi,yi,zi1)
-title('最近点插值')
-
-subplot(2,2,2)
-mesh(xi,yi,zi2)
-title('双线性插值')
-
-subplot(2,2,3)
-mesh(xi,yi,zi3)
-title('三次样条插值')
-
-subplot(2,2,4)
-mesh(xi,yi,zi4)
-title('双三次插值')
+plot(x,y,"xk","MarkerSize",20)
+hold on
+plot(x1,y1,x1,y3,x1,y5)
+legend("拟合点","一次拟合","三次拟合","五次拟合")
+xlabel("碳含量x")
+ylabel("电阻y")

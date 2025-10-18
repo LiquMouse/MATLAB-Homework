@@ -1,15 +1,27 @@
 clf
+x = linspace(-3*pi,3*pi,1000);
+y = cos(x);
 
-x = [10 15 20 25 30];
-y = [25.2 29.8 31.2 31.7 29.4];
-xi = 10:0.01:30;
-yi1 = interp1(x,y,xi,"nearest");
-yi2 = interp1(x,y,xi,"linear");
-yi3 = interp1(x,y,xi,"spline");
-yi4 = interp1(x,y,xi,"pchip");
-plot(x,y,"o")
-hold on
-plot(xi,yi1,'--',xi,yi2,xi,yi3,xi,yi4)
-xlabel("浓度X")
-ylabel("抗压强度Y")
-legend('数据点','最近点插值','分段线性插值','三次样条插值','分段三次Hermite插值')
+p2 = polyfit(x,y,2);
+y2 = polyval(p2,x);
+
+p3 = polyfit(x,y,3);
+y3 = polyval(p3,x);
+
+p4 = polyfit(x,y,4);
+y4 = polyval(p4,x);
+
+p6 = polyfit(x,y,6);
+y6 = polyval(p6,x);
+
+disp('二次拟合函数')
+f2 = poly2str(p2,'x')
+disp('三次拟合函数')
+f3 = poly2str(p3,'x')
+disp('四次拟合函数')
+f4 = poly2str(p4,'x')
+disp('六次拟合函数')
+f6 = poly2str(p6,'x')
+
+plot(x,y,":",x,y2,x,y3,x,y4,x,y6)
+legend("y=cos(x)","二次拟合","三次拟合","四次拟合","六次拟合")

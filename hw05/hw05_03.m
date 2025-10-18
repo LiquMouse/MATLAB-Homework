@@ -1,5 +1,5 @@
 clf
-
+hold on
 f = load("data.m");
 
 x = f(:,1);
