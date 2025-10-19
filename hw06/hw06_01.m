@@ -9,7 +9,7 @@ hold on
 z2 = x-y+a;
 h_surf=mesh(x,y,z2,'EdgeAlpha',0.2,'FaceAlpha',0.2,'FaceColor','g','EdgeColor','g');
 
-note = text(0,0,150,'平面 z=x-y')
+note = text(0,0,150,'平面 z=x-y');
 
 r0 = abs(z1-z2)<=0.1;
 xx = x.*r0;
