@@ -1,9 +1,8 @@
 clf;
 clc;
 
-freq=[];
 student=30;
-n = 2000;
+n = 2000; %实验次数
 hold on
 
 ylim([0,1])
@@ -11,7 +10,7 @@ plot(1:n,0.7063*ones(1,n),'r',LineWidth=1)
 xlabel('实验次数')
 ylabel('频率或概率')
 for t=1:n
-    same=0;
+    same=0; %有相同生日的次数
     for c=1:t
         y=0;
         birthdays = unidrnd(365,1,student);
